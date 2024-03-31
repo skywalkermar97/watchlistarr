@@ -77,7 +77,7 @@ object ConfigurationUtils {
 
   private def getSonarrConfig(configReader: ConfigurationReader, client: HttpClient): IO[(Uri, String, Int, String, Int, Set[Int])] = {
     val url = configReader.getConfigOption(Keys.sonarrBaseUrl).flatMap(Uri.fromString(_).toOption).getOrElse {
-      val default = "http://localhost:8989"
+      val default = "http://sonarr:8989"
       logger.warn(s"Unable to fetch sonarr baseUrl, using default $default")
       Uri.unsafeFromString(default)
     }
@@ -116,7 +116,7 @@ object ConfigurationUtils {
 
   private def getRadarrConfig(configReader: ConfigurationReader, client: HttpClient): IO[(Uri, String, Int, String, Set[Int])] = {
     val url = configReader.getConfigOption(Keys.radarrBaseUrl).flatMap(Uri.fromString(_).toOption).getOrElse {
-      val default = "http://localhost:7878"
+      val default = "http://radarr:7878"
       logger.warn(s"Unable to fetch radarr baseUrl, using default $default")
       Uri.unsafeFromString(default)
     }
